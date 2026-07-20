@@ -249,7 +249,7 @@ class StepExecutor implements IStepExecutor {
     }
 
     @Override
-    def allure(List<String> results) {
+def allure(List<String> results) {
 
     def cmd = "\"${steps.tool('allure')}\\bin\\allure.bat\" generate " +
             results.collect { "\"${it}\"" }.join(" ") +
@@ -259,16 +259,15 @@ class StepExecutor implements IStepExecutor {
     steps.echo cmd
 
     steps.bat(script: cmd)
-    }       
 
-    steps.allure([
+    steps.allure(
         commandline: 'allure',
         includeProperties: false,
         jdk: '',
         properties: [],
         reportBuildPolicy: 'ALWAYS',
         results: results.collect { [path: it] }
-    ])
+    )
 }
 
     @Override
