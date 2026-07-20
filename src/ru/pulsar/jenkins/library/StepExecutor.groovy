@@ -251,12 +251,15 @@ class StepExecutor implements IStepExecutor {
     @Override
     def allure(List<String> results) {
 
-    steps.echo "========== ALLURE DEBUG =========="
-    steps.echo "Allure results directories:"
+    def cmd = "\"${steps.tool('allure')}\\bin\\allure.bat\" generate " +
+            results.collect { "\"${it}\"" }.join(" ") +
+            " -c -o allure-report"
 
-    results.each { path ->
-        steps.echo path
-    }
+    steps.echo "===== CMD ====="
+    steps.echo cmd
+
+    steps.bat(script: cmd)
+}
 
     steps.echo "=================================="
 
