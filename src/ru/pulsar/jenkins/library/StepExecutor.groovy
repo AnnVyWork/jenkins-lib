@@ -259,9 +259,7 @@ class StepExecutor implements IStepExecutor {
     steps.echo cmd
 
     steps.bat(script: cmd)
-}
-
-    steps.echo "=================================="
+    }       
 
     steps.allure([
         commandline: 'allure',
