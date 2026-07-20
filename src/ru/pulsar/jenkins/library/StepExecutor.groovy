@@ -261,7 +261,6 @@ def allure(List<String> results) {
     steps.bat(script: cmd)
 
     steps.allure(
-        commandline: 'allure',
         includeProperties: false,
         jdk: '',
         properties: [],
