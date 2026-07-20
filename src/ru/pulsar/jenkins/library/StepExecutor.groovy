@@ -250,15 +250,25 @@ class StepExecutor implements IStepExecutor {
 
     @Override
     def allure(List<String> results) {
-        steps.allure([
-            commandline: 'allure',
-            includeProperties: false,
-            jdk: '',
-            properties: [],
-            reportBuildPolicy: 'ALWAYS',
-            results: results.collect { [path: it] }
-        ])
+
+    steps.echo "========== ALLURE DEBUG =========="
+    steps.echo "Allure results directories:"
+
+    results.each { path ->
+        steps.echo path
     }
+
+    steps.echo "=================================="
+
+    steps.allure([
+        commandline: 'allure',
+        includeProperties: false,
+        jdk: '',
+        properties: [],
+        reportBuildPolicy: 'ALWAYS',
+        results: results.collect { [path: it] }
+    ])
+}
 
     @Override
     def junit(String testResults, boolean allowEmptyResults) {
